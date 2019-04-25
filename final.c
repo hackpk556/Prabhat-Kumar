@@ -1,3 +1,7 @@
+//Prabhat kumar mahato
+//reg no: 11718252
+//roll no:59
+
 #include<pthread.h>
 #include<stdio.h>
 #include<semaphore.h>
@@ -20,9 +24,8 @@ sem_t m;
 sem_t n;
 int main()
 {
-sem_init(&m,0,2);
-
-sem_init(&n,0,2);
+sem_init(&m,0,1);
+sem_init(&n,0,1);
 pthread_t thread1;
 pthread_create(&thread1, NULL, fun1, NULL);
 pthread_join(thread1, NULL);
@@ -33,13 +36,23 @@ pthread_t thread2;
 pthread_create(&thread2, NULL, fun2, NULL);
 pthread_join(thread2, NULL);
 sem_wait(&m);
-fb();
+//fb();
+fc();
 sem_post(&n);
+//P(m); 
+//fb();
+//V(n); 
 }
+
+
 void *fun2()
 {
 fa();
 sem_post(&m);
 sem_wait(&n);
-fc();
+//fc();
+fb();
+//V(m);
+//P(n);
+//fc();
 }
